@@ -52,10 +52,19 @@ def get_user_input(message, data_type, min_value = 1 , max_value = 30):
     return validation_result['value']
 
 
-class Calculator():
+class Calculator:
+
+    def rate_table(self):
+        self.rate = 0
+        if self.time in list(range(1, 3)) and self.customer_type == 1:
+            self.rate = 6
+        elif self.time in list(range(1, 3)) and self.customer_type == 2:
+            self.rate = 6.5
+        return self.rate
+
 
     def Calculator_main(self):
-        #self.customer_type = get_user_input("Type of Customer: Normal = 1 or SeniourCitizen = 2 --> ", 'int', 1, 2)
+        self.customer_type = get_user_input("Type of Customer: Normal = 1 or SeniourCitizen = 2 --> ", 'int', 1, 2)
         self.principal_amount = get_user_input("Amount to deposit (Min: 1, Max: 10000000) --> ", 'float', 1, 10000000)
         #self.customer_name = get_user_input("Enter your name. Name should be min 5 characters and max 20 characters --> ", 'string', 5, 20)
         self.time = get_user_input("Enter the number of the years --> ",'int')
@@ -68,19 +77,20 @@ class Calculator():
         return self.interest
 
     def SimpleInterest(self):
-        self.rate = 6.25
+        self.rate = self.rate_table()
         self.total = self.principal_amount * (1 + self.rate/100 * self.time)
         print('\nYour Maturity Value after %d year(s) will be %.2f' %(self.time,self.total))
         self.interest = self.Interest_Earned(self.total , self.principal_amount)
         print("Interest Earned will be %.2f" %self.interest)
 
     def Compounded(self):
-        self.rate = .07
+        self.rate = self.rate_table()
+        self.rate = self.rate/100
         if self.frequency == 2:
             n = 1
         elif self.frequency == 3:
             n = 4
-        self.total = self.principal_amount * (1 + self.rate/n) ** (self.time * n)
+        self.total = self.principal_amount * (1 + self.rate/n )** (self.time * n)
         print('\nYour Maturity Value after %d years will be %.2f' %(self.time,self.total))
         self.interest = self.Interest_Earned(self.total , self.principal_amount)
         print("Interest Earned will be %.2f" %self.interest)
