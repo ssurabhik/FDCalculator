@@ -54,12 +54,28 @@ def get_user_input(message, data_type, min_value = 1 , max_value = 30):
 
 class Calculator:
 
-    def rate_table(self):
+    rate_table = [{
+        'tenure_from': 1,
+        'tenure_till': 2,
+        'normal_citizen': 6,
+        'senior_citizen_interest': 6.5
+    }, {
+        'tenure_from': 2,
+        'tenure_till': 5,
+        'normal_citizen': 7,
+        'senior_citizen_interest': 7.5
+    }];
+
+    def get_rate(self):
         self.rate = 0
-        if self.time in list(range(1, 3)) and self.customer_type == 1:
-            self.rate = 6
-        elif self.time in list(range(1, 3)) and self.customer_type == 2:
-            self.rate = 6.5
+
+        for x in self.rate_table:
+            if self.time in list(range(x['tenure_from'], x['tenure_till'])):
+                if self.customer_type == 1:
+                    self.rate = x['normal_citizen']
+                elif self.customer_type == 2:
+                    self.rate = x['senior_citizen_interest']
+                break
         return self.rate
 
 
@@ -77,14 +93,14 @@ class Calculator:
         return self.interest
 
     def SimpleInterest(self):
-        self.rate = self.rate_table()
+        self.rate = self.get_rate()
         self.total = self.principal_amount * (1 + self.rate/100 * self.time)
         print('\nYour Maturity Value after %d year(s) will be %.2f' %(self.time,self.total))
         self.interest = self.Interest_Earned(self.total , self.principal_amount)
         print("Interest Earned will be %.2f" %self.interest)
 
     def Compounded(self):
-        self.rate = self.rate_table()
+        self.rate = self.get_rate()
         self.rate = self.rate/100
         if self.frequency == 2:
             n = 1
