@@ -55,11 +55,11 @@ def get_user_input(message, data_type, min_value = 1 , max_value = 30):
 class Calculator():
 
     def Calculator_main(self):
-        #self.customer_type = get_user_input("Type of Customer: Normal = 1 or SeniourCitizen = 2 ", 'int', 1, 2)
-        self.principal_amount = get_user_input("Amount to deposit (Min: 1, Max: 10000000) ", 'float', 1, 10000000)
-        #self.customer_name = get_user_input("Enter your name. Name should be min 5 characters and max 20 characters", 'string', 5, 20)
-        self.time = get_user_input("Enter the number of the years",'int')
-        self.frequency = get_user_input("Enter the frequency: 1 for Simple Interest,  2 for Compounded Yearly, 3 for Compounded Quartely", 'int', 1, 3)
+        #self.customer_type = get_user_input("Type of Customer: Normal = 1 or SeniourCitizen = 2 --> ", 'int', 1, 2)
+        self.principal_amount = get_user_input("Amount to deposit (Min: 1, Max: 10000000) --> ", 'float', 1, 10000000)
+        #self.customer_name = get_user_input("Enter your name. Name should be min 5 characters and max 20 characters --> ", 'string', 5, 20)
+        self.time = get_user_input("Enter the number of the years --> ",'int')
+        self.frequency = get_user_input("Enter the frequency: 1 for Simple Interest,  2 for Compounded Yearly, 3 for Compounded Quartely --> ", 'int', 1, 3)
 
     def Interest_Earned(self, total, amount):
         self.total = total
